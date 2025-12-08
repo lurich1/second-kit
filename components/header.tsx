@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, Xmark, MapPin } from "iconoir-react"
 
 export function Header() {
@@ -13,9 +14,12 @@ export function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <img
+            <Image
               src="/images-removebg-preview.png"
               alt="3 Seconds Kitchen"
+              width={64}
+              height={64}
+              priority
               className="h-12 md:h-16 w-auto"
             />
             <div className="hidden sm:block">

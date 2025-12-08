@@ -128,6 +128,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  img {
+    content-visibility: auto;
+  }
 }
 
 @keyframes float {

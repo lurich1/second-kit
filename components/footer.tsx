@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Instagram, Phone, Mail, MapPin } from "iconoir-react"
 
 export function Footer() {
@@ -9,9 +10,11 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img
+              <Image
                 src="/images-removebg-preview.png"
                 alt="3 Seconds Kitchen"
+                width={48}
+                height={48}
                 className="h-12 w-12 object-contain"
               />
               <div>
@@ -23,9 +26,11 @@ export function Footer() {
               Pizza, Jollof, Fried Rice, Yam Chips, Assorted Rice, Fufu, Banku, Pastries, Spaghetti & Many More. Delivery Service Available!
             </p>
             <div className="flex items-center gap-2 text-muted-foreground">
-              <img
+              <Image
                 src="/graphics/truck.svg"
                 alt="Food Truck"
+                width={32}
+                height={32}
                 className="h-8 w-8 object-contain"
               />
               <span className="text-xs font-medium">Mobile Food Truck Experience</span>

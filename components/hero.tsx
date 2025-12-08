@@ -61,9 +61,11 @@ export function Hero() {
         {/* Location Badge with Truck Icon - Large & Prominent */}
         <div className="max-w-xl mx-auto mb-16 p-6 md:p-8 bg-primary/10 rounded-2xl border-2 border-primary/30 backdrop-blur-sm">
           <div className="flex items-center justify-center gap-4 md:gap-6">
-            <img
+            <Image
               src="/graphics/truck.svg"
               alt="Food Truck"
+              width={80}
+              height={80}
               className="h-16 w-16 md:h-20 md:w-20 object-contain flex-shrink-0"
             />
             <div className="text-left">
@@ -99,9 +101,12 @@ export function Hero() {
               <div className="absolute inset-0 bg-gradient-radial from-primary/20 via-transparent to-transparent animate-pulse" />
 
               {/* Tasty Burger - Main Hero Image */}
-              <img
+              <Image
                 src="/graphics/tasty burger.svg"
                 alt="Our Signature Burgers"
+                width={600}
+                height={600}
+                priority
                 className="w-full h-full object-contain drop-shadow-[0_0_80px_rgba(251,191,36,0.5)] animate-float"
               />
             </div>

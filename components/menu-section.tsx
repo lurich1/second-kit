@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { MenuCategory } from "./menu-category"
 import { PizzaSlice as BurgerIcon, CoffeeCup, Leaf, FireFlame as Flame } from "iconoir-react"
 
@@ -197,9 +198,12 @@ export function MenuSection() {
                   className="group relative cursor-pointer"
                 >
                   <div className="relative w-full aspect-square mb-4 group-hover:-translate-y-2 transition-transform duration-500">
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.name}
+                      width={400}
+                      height={400}
+                      loading="lazy"
                       className="w-full h-full object-contain drop-shadow-[0_15px_40px_rgba(0,0,0,0.3)] group-hover:drop-shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition-all duration-500"
                       style={{ filter: 'drop-shadow(0 8px 20px rgba(251, 191, 36, 0.2))' }}
                     />
@@ -230,9 +234,12 @@ export function MenuSection() {
                   className="group relative cursor-pointer"
                 >
                   <div className="relative w-full aspect-video mb-6 group-hover:-translate-y-2 transition-transform duration-500">
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.name}
+                      width={600}
+                      height={400}
+                      loading="lazy"
                       className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] group-hover:drop-shadow-[0_25px_70px_rgba(0,0,0,0.4)] transition-all duration-500"
                       style={{ filter: 'drop-shadow(0 10px 25px rgba(251, 191, 36, 0.25))' }}
                     />
@@ -270,9 +277,12 @@ export function MenuSection() {
                 className="group cursor-pointer"
               >
                 <div className="relative w-full aspect-square mb-3">
-                  <img
+                  <Image
                     src="/graphics/dips.svg"
                     alt={dip.name}
+                    width={100}
+                    height={100}
+                    loading="lazy"
                     className="w-full h-full object-contain group-hover:-translate-y-1 transition-transform duration-300"
                   />
                 </div>

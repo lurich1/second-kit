@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { Phone, MapPin } from "iconoir-react"
 
 export function StickyCTA() {
@@ -24,9 +25,11 @@ export function StickyCTA() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           {/* Location Info with Truck */}
           <div className="flex items-center gap-2 text-primary-foreground">
-            <img
+            <Image
               src="/graphics/truck.svg"
               alt="Food Truck"
+              width={32}
+              height={32}
               className="h-8 w-8 object-contain hidden md:block"
             />
             <div className="flex items-center gap-2 text-sm">

@@ -31,9 +31,12 @@ export function MenuCategory({ items }: MenuCategoryProps) {
 
               {/* Halal Badge - Bottom Left Corner */}
               <div className="absolute bottom-2 left-2 z-20 group-hover:scale-110 transition-transform duration-300">
-                <img
+                <Image
                   src="/graphics/halal logo.svg"
                   alt="100% Halal"
+                  width={64}
+                  height={64}
+                  loading="lazy"
                   className="h-12 w-12 md:h-16 md:w-16 drop-shadow-lg"
                 />
               </div>
@@ -44,6 +47,7 @@ export function MenuCategory({ items }: MenuCategoryProps) {
                   src={item.image}
                   alt={item.name}
                   fill
+                  loading="lazy"
                   className="object-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.4)] group-hover:drop-shadow-[0_30px_80px_rgba(0,0,0,0.5)] transition-all duration-500"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   style={{ filter: 'drop-shadow(0 10px 30px rgba(251, 191, 36, 0.3))' }}
