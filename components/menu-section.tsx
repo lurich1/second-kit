@@ -1,161 +1,79 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import { MenuCategory } from "./menu-category"
-import { PizzaSlice as BurgerIcon, CoffeeCup, Leaf, FireFlame as Flame } from "iconoir-react"
+import { PizzaSlice, RiceBowl, Leaf, Sandwich, AppleHalf, ChickenLeg, Fish, Pot, NoodleBowl } from "iconoir-react"
 
 const categories = [
-  { id: "beef", label: "Beef Burger", icon: BurgerIcon },
-  { id: "chicken", label: "Chicken Burger", icon: Flame },
-  { id: "veggie", label: "Veggie", icon: Leaf },
-  { id: "drinks", label: "Drinks", icon: CoffeeCup },
+  { id: "pizza", label: "Pizza", icon: PizzaSlice },
+  { id: "rice", label: "Rice", icon: RiceBowl },
+  { id: "fries", label: "Fries", icon: ChickenLeg },
+  { id: "banku", label: "Banku", icon: Fish },
+  { id: "ampesi", label: "Ampesi", icon: Pot },
+  { id: "shawarma", label: "Shawarma", icon: Sandwich },
+  { id: "salad", label: "Salad", icon: Leaf },
+  { id: "sandwich", label: "Sandwich", icon: AppleHalf },
+  { id: "spaghetti", label: "Spaghetti", icon: NoodleBowl },
 ]
 
 const menuItems = {
-  beef: [
-    {
-      name: "Cheesy Buffalo",
-      price: "GHS 10.50",
-      description: "Brioche bun, homemade beef patty 140g, cheese, burger sauce, pickles, onions, tomatoes, lettuce",
-      spiceLevel: 3,
-      image: "/burgers/beef/Cheesy-Buffalo_10,50euros.webp",
-    },
-    {
-      name: "Angry Bull",
-      price: "GHS 12.00",
-      description:
-        "Brioche bun, beef patty 140g, cheese, chili cheese sauce, jalapenos, pickles, onions, lettuce",
-      spiceLevel: 3,
-      image: "/burgers/beef/Angry-Bull_12euros.webp",
-    },
-    {
-      name: "Smokie Beefy BBQ",
-      price: "GHS 13.00",
-      description:
-        "Brioche bun, beef patty 140g, cheese, burger sauce, pickles, onion rings, crispy onions, BBQ sauce, tomatoes, lettuce",
-      spiceLevel: 3,
-      image: "/burgers/beef/Smookie-Beefy-BBQ_13euros.webp",
-    },
-    {
-      name: "Blazing Nacho Beef",
-      price: "GHS 13.00",
-      description:
-        "Brioche bun, beef patty 140g, cheese, burger sauce, pickles, jalapenos, nachos, sriracha sauce, tomatoes, lettuce",
-      spiceLevel: 3,
-      image: "/burgers/beef/Blazing-Nacho-Beef_13euros.webp",
-    },
-    {
-      name: "Cheese Burger",
-      price: "GHS 7.00",
-      description: "Brioche bun, beef patty 140g, cheese, burger sauce, pickles, onions, tomatoes, lettuce",
-      spiceLevel: 1,
-      image: "/burgers/beef/Cheese-Burger_7euros.webp",
-    },
+  pizza: [
+    { name: "Small Pizza", price: "GHS 80 - 140", description: "Chicken 80, Beef 90, Tuna 100, Mushroom 100, All Seasoning 100, 3 Seconds Special 120, Goat 130, Fully Loaded Special 140." },
+    { name: "Medium Pizza", price: "GHS 90 - 170", description: "Margarita 90, Chicken 100, Beef 110, Tuna 120, Mushroom 120, All Seasoning 120, 3 Seconds Special 140, Goat 170, Fully Loaded Special 170." },
+    { name: "Large Pizza", price: "GHS 130 - 220", description: "Margarita 130, Chicken 150, Beef 160, Tuna 170, Mushroom 170, All Seasoning 170, 3 Seconds Special 190, Goat 220, Fully Loaded Special 220." },
+    { name: "Family Pizza", price: "GHS 180 - 300", description: "Margarita 180, Chicken 200, Beef 220, Tuna 240, Mushroom 240, All Seasoning 260, 3 Seconds Special 280, Goat 300, Fully Loaded Special 300." },
+    { name: "Extra Cheese", price: "GHS 30", description: "Add-on option." },
   ],
-  chicken: [
-    {
-      name: "Crunchy Chicken",
-      price: "GHS 8.50",
-      description: "Brioche bun, chicken strips, cheese, burger sauce, lettuce",
-      spiceLevel: 2,
-      image: "/burgers/chicken/Chrunchy-Chicken_8,50euros.webp",
-    },
-    {
-      name: "Loaded Crunchy",
-      price: "GHS 9.00",
-      description: "Brioche bun, chicken strips, cheese, burger sauce, tomatoes, onions, pickles, lettuce",
-      spiceLevel: 2,
-      image: "/burgers/chicken/Loaded-Chrunchy_9euros.webp",
-    },
-    {
-      name: "Crispy Ringer",
-      price: "GHS 10.00",
-      description: "Brioche bun, chicken strips, cheese, burger sauce, onion rings, onions, tomatoes, lettuce",
-      spiceLevel: 2,
-      image: "/burgers/chicken/Crispy-Ringer_10euros.webp",
-    },
-    {
-      name: "Mexican Cracker",
-      price: "GHS 11.00",
-      description:
-        "Brioche bun, chicken strips, cheese, burger sauce, jalapenos, pickles, nachos, sriracha sauce, onions, lettuce",
-      spiceLevel: 2,
-      image: "/burgers/chicken/Mexican-Cracker_11euros.webp",
-    },
-    {
-      name: "Flip Chicken Burger",
-      price: "GHS 6.00",
-      description: "Brioche bun, chicken strips, cheese, burger sauce, lettuce",
-      spiceLevel: 1,
-      image: "/burgers/chicken/Flip-Chicken-Burger_6euros.webp",
-    },
-    {
-      name: "Foodie Bomber",
-      price: "GHS 13.00",
-      description:
-        "Brioche bun, chicken strips, cheese, chili cheese nuggets, chili cheese sauce, onions, jalapenos, lettuce",
-      spiceLevel: 2,
-      image: "/burgers/chicken/Foodie-Bomber-13euros.webp",
-    },
+  rice: [
+    { name: "Rice Dishes", price: "GHS 30 - 150", description: "Jollof/Fried Rice with charcoal chicken 30-70, Goat 80-90/80-100, Red Fish 50-70, Assorted 80-150, Egg & Sausage 50-60, Turkey 70-80, Beef/Chicken sauce 80-100." },
+    { name: "Special Rice Dishes", price: "GHS 50 - 100", description: "Egg Fried Rice + Grilled Chicken 60-70, Vegetable Rice + Grilled Chicken 60-70, Aroni + Grilled Chicken 60-80, Aroni + Goat 80-100, Aroni Red Fish 70-100, Plain Rice + Gravy 50-60, Plain Rice + Moyo 60-80." },
   ],
-  veggie: [
-    {
-      name: "Plant Power",
-      price: "GHS 9.00",
-      description: "Brioche bun, falafel, cheese, burger sauce, pickles, lettuce, onions, tomatoes",
-      spiceLevel: 0,
-    },
-    {
-      name: "Veggie BBQ",
-      price: "GHS 11.00",
-      description:
-        "Brioche bun, falafel, cheese, burger sauce, pickles, onion rings, crispy onions, BBQ sauce, tomatoes, lettuce",
-      spiceLevel: 0,
-    },
+  fries: [
+    { name: "Fries Dishes", price: "GHS 50 - 120", description: "French Fries/Yam Chips + Chicken 50-60, + Gizzard 50-60, + Sausage 50-60, + Tilapia 70-100, Loaded Fries 70-120." },
   ],
-  drinks: [
-    { name: "Coca Cola", price: "GHS 2.50", description: "330ml can", image: "/graphics/cold drinks sprite cola fanta.svg" },
-    { name: "Coca Cola Zero", price: "GHS 2.50", description: "330ml can", image: "/graphics/cold drinks sprite cola fanta.svg" },
-    { name: "Fanta", price: "GHS 2.50", description: "330ml can", image: "/graphics/cold drinks sprite cola fanta.svg" },
-    { name: "Sprite", price: "GHS 2.50", description: "330ml can", image: "/graphics/cold drinks sprite cola fanta.svg" },
-    { name: "Capri Sun", price: "GHS 1.50", description: "200ml pouch", image: "/graphics/caprisun.svg" },
-    { name: "Water", price: "GHS 2.00", description: "500ml bottle", image: "/graphics/water.svg" },
-    { name: "Mezzo Mix", price: "GHS 2.50", description: "330ml can", image: "/graphics/cold drinks sprite cola fanta.svg" },
-    { name: "Red Bull", price: "GHS 3.50", description: "250ml can", image: "/graphics/redbull.svg" },
+  banku: [
+    { name: "Banku Dishes", price: "GHS 60 - 150", description: "Banku with Tilapia 60/70/80, with Green + Tilapia 60/70/80, with Moyo + Tilapia 60/70/80, with Tilapia Light Soup 60/70, Catfish 100/120/150." },
+  ],
+  ampesi: [
+    { name: "Ampesi Dishes", price: "GHS 50 - 70", description: "Yam Chips + Chicken, Boiled Yam + Egg Stew, Boiled Yam + Palava Sauce, Boiled Yam + Garden Egg Stew, Plantain + Egg Stew, Plantain + Palava Sauce, Plantain + Garden Egg Stew, Plantain + Kontomire Stew." },
+  ],
+  shawarma: [
+    { name: "Shawarma Types", price: "GHS 50 - 80", description: "Beef 55, Chicken 50, Mixed 60, Beef + Fries 75, Chicken + Fries 70, Mixed + Fries 80." },
+  ],
+  salad: [
+    { name: "Salad Dishes", price: "GHS 30 - 60", description: "Potato 40/50, Beetroot 30/40, Chicken 30/40/50, Tuna 30/40/50, Avocado 40/50, Beef 40/50/60, 3 Seconds Special 50/60, Pasta 30/40/50, Vegetable/Mixed 30/40/50." },
+  ],
+  sandwich: [
+    { name: "Sandwich Types", price: "GHS 40 - 50", description: "Egg Sandwich 40, Protein/Vegetable/Club/Tuna Club 40/50, Chicken Burger 40, Beef Burger 40, Cheese Burger 40, Hot Dog 40." },
+  ],
+  spaghetti: [
+    { name: "Spaghetti Dishes", price: "GHS 50 - 100", description: "Spaghetti Bolognese 50/60, Assorted Pasta 80/100, Assorted Indomie 50/70/80/100." },
   ],
 }
 
 export function MenuSection() {
-  const [activeCategory, setActiveCategory] = useState("beef")
+  const [activeCategory, setActiveCategory] = useState("pizza")
 
   return (
     <section id="menu" className="py-20 md:py-32 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header - Restaurant Style */}
         <div className="text-center mb-12">
-          <h2 className="text-5xl sm:text-6xl md:text-7xl font-black text-primary tracking-tighter mb-4">
-            OUR MENU
-          </h2>
+          <h2 className="text-5xl sm:text-6xl md:text-7xl font-black text-primary tracking-tighter mb-4">OUR MENU</h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto font-medium">
-            Pizza, Jollof, Fried Rice, Yam Chips, Assorted Rice, Fufu, Banku, Pastries, Spaghetti & Many More
+            Updated 3 Seconds Kitchen menu.
           </p>
         </div>
 
-        {/* Deal Banner - Eye-Catching */}
         <div className="mb-16 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-primary via-amber-400 to-primary opacity-20 animate-pulse" />
           <div className="relative p-8 text-center border-4 border-primary rounded-3xl bg-card">
-            <p className="text-3xl md:text-5xl font-black text-primary tracking-tight mb-2">
-              COMBO DEAL
-            </p>
+            <p className="text-3xl md:text-5xl font-black text-primary tracking-tight mb-2">CALL / WHATSAPP</p>
             <p className="text-xl md:text-2xl font-bold text-foreground">
-              Burger + Fries + Drink = <span className="text-primary">GHS 4.50</span>
+              <span className="text-primary">0536 991 464</span>
             </p>
           </div>
         </div>
 
-        {/* Category Tabs - Bold Restaurant Style */}
         <div className="flex flex-wrap justify-center gap-3 mb-16">
           {categories.map((category) => {
             const Icon = category.icon
@@ -176,126 +94,7 @@ export function MenuSection() {
           })}
         </div>
 
-        {/* Menu Items */}
         <MenuCategory items={menuItems[activeCategory as keyof typeof menuItems]} />
-
-        {/* Sides & Extras - Floating Style */}
-        <div className="mt-24 space-y-16">
-          {/* Appetizers Section */}
-          <div>
-            <h3 className="text-4xl md:text-5xl font-black text-primary mb-12 tracking-tighter text-center">
-              APPETIZERS & SIDES
-            </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-              {[
-              { name: "Chili Cheese Nuggets", image: "/Appetizers/Chilli-Cheese-Nuggets.webp", prices: "6 pcs GHS 5 • 10 pcs GHS 7.50 • 16 pcs GHS 11" },
-              { name: "Mozzarella Sticks", image: "/Appetizers/Mozarella-Sticks.webp", prices: "4 pcs GHS 5 • 8 pcs GHS 9 • 14 pcs GHS 14" },
-              { name: "Onion Rings", image: "/Appetizers/Onion-Rings.webp", prices: "6 pcs GHS 4 • 12 pcs GHS 7 • 24 pcs GHS 12" },
-              { name: "Fries Portion", image: "/Appetizers/Pommes_3,5euros.webp", prices: "GHS 3.50", featured: true }
-              ].map((item) => (
-                <div
-                  key={item.name}
-                  className="group relative cursor-pointer"
-                >
-                  <div className="relative w-full aspect-square mb-4 group-hover:-translate-y-2 transition-transform duration-500">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      width={400}
-                      height={400}
-                      loading="lazy"
-                      className="w-full h-full object-contain drop-shadow-[0_15px_40px_rgba(0,0,0,0.3)] group-hover:drop-shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition-all duration-500"
-                      style={{ filter: 'drop-shadow(0 8px 20px rgba(251, 191, 36, 0.2))' }}
-                    />
-                  </div>
-                  <div className="text-center">
-                    <h4 className="text-xl font-black text-foreground mb-2 tracking-tight group-hover:text-primary transition-colors">{item.name}</h4>
-                    <p className={`font-bold ${item.featured ? 'text-2xl text-primary' : 'text-sm text-primary'}`}>
-                      {item.prices}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Fried Chicken Section */}
-          <div>
-            <h3 className="text-4xl md:text-5xl font-black text-primary mb-12 tracking-tighter text-center">
-              FRIED CHICKEN
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-12">
-              {[
-              { name: "Chicken Wings", image: "/Fried-Chicken/Chicken-Wings.webp", prices: "6 pcs GHS 7.50 • 10 pcs GHS 11 • 20 pcs GHS 20" },
-              { name: "Chicken Strips", image: "/Fried-Chicken/Chicken-Stripes.webp", prices: "3 pcs GHS 6 • 6 pcs GHS 11.50 • 9 pcs GHS 16" }
-              ].map((item) => (
-                <div
-                  key={item.name}
-                  className="group relative cursor-pointer"
-                >
-                  <div className="relative w-full aspect-video mb-6 group-hover:-translate-y-2 transition-transform duration-500">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      width={600}
-                      height={400}
-                      loading="lazy"
-                      className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] group-hover:drop-shadow-[0_25px_70px_rgba(0,0,0,0.4)] transition-all duration-500"
-                      style={{ filter: 'drop-shadow(0 10px 25px rgba(251, 191, 36, 0.25))' }}
-                    />
-                  </div>
-                  <div className="text-center">
-                    <h4 className="text-2xl lg:text-3xl font-black text-foreground mb-3 tracking-tight group-hover:text-primary transition-colors">{item.name}</h4>
-                    <p className="text-lg font-bold text-primary">{item.prices}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Dips Section - Restaurant Menu Style */}
-        <div className="mt-16">
-          <h3 className="text-4xl md:text-5xl font-black text-primary mb-12 tracking-tighter text-center">
-            SAUCES & DIPS
-          </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-            {[
-              { name: "Mayo", price: "GHS 0.50" },
-              { name: "Ketchup", price: "GHS 0.50" },
-              { name: "Garlic Flip", price: "GHS 1.00" },
-              { name: "Blazing BBQ", price: "GHS 1.00" },
-              { name: "Super Curry", price: "GHS 1.00" },
-              { name: "Dragon's Flame", price: "GHS 1.00" },
-              { name: "Smokie Volcano", price: "GHS 1.00" },
-              { name: "Sweet Chili Magic", price: "GHS 1.00" },
-              { name: "Tangy Chili Cheese", price: "GHS 1.00" },
-              { name: "Foodie Burger Sauce", price: "GHS 1.00" },
-            ].map((dip) => (
-              <div
-                key={dip.name}
-                className="group cursor-pointer"
-              >
-                <div className="relative w-full aspect-square mb-3">
-                  <Image
-                    src="/graphics/dips.svg"
-                    alt={dip.name}
-                    width={100}
-                    height={100}
-                    loading="lazy"
-                    className="w-full h-full object-contain group-hover:-translate-y-1 transition-transform duration-300"
-                  />
-                </div>
-                <div className="text-center">
-                  <p className="text-foreground font-bold text-sm mb-1 group-hover:text-primary transition-colors">
-                    {dip.name}
-                  </p>
-                  <p className="text-primary font-black text-lg">{dip.price}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   )
