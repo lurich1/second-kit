@@ -61,6 +61,7 @@ export function MenuCategory({ items }: MenuCategoryProps) {
             <h3 className="text-2xl lg:text-3xl font-black text-foreground mb-3 tracking-tight group-hover:text-primary transition-colors">
               {item.name}
             </h3>
+            <p className="text-primary font-black text-xl mb-2">{item.price}</p>
             <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 mb-3">
               {item.description}
             </p>
