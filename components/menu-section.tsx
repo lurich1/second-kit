@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { MenuCategory } from "./menu-category"
-import { PizzaSlice, RiceBowl, Leaf, Sandwich, AppleHalf, ChickenLeg, Fish, Pot, NoodleBowl } from "iconoir-react"
+import { PizzaSlice, RiceBowl, Leaf, Sandwich, AppleHalf, ChickenLeg, Fish, Pot, CoffeeCup } from "iconoir-react"
 
 const categories = [
   { id: "pizza", label: "Pizza", icon: PizzaSlice },
@@ -13,7 +13,7 @@ const categories = [
   { id: "shawarma", label: "Shawarma", icon: Sandwich },
   { id: "salad", label: "Salad", icon: Leaf },
   { id: "sandwich", label: "Sandwich", icon: AppleHalf },
-  { id: "spaghetti", label: "Spaghetti", icon: NoodleBowl },
+  { id: "spaghetti", label: "Spaghetti", icon: CoffeeCup },
 ]
 
 const menuItems = {
