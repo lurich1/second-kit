@@ -39,7 +39,7 @@ export default function Home() {
           }
         ],
         "paymentAccepted": "Cash, Credit Card",
-        "currenciesAccepted": "EUR"
+        "currenciesAccepted": "GHS"
       },
       {
         "@type": "FoodEstablishment",
@@ -50,68 +50,21 @@ export default function Home() {
           "hasMenuSection": [
             {
               "@type": "MenuSection",
-              "name": "Beef Burgers",
-              "description": "Hausgemachte 140g Beef Patties, 100% Halal",
-              "hasMenuItem": [
-                {
-                  "@type": "MenuItem",
-                  "name": "Cheesy Buffalo",
-                  "description": "Brioche Bun, Beef Patty 140g, Käse, Burger Sauce, Gurke, Zwiebel, Tomaten, Salat",
-                  "offers": {
-                    "@type": "Offer",
-                    "price": "10.50",
-                    "priceCurrency": "EUR"
-                  },
-                  "suitableForDiet": "https://schema.org/HalalDiet"
-                },
-                {
-                  "@type": "MenuItem",
-                  "name": "Angry Bull",
-                  "description": "Brioche Bun, Beef Patty 140g, Käse, Chili Cheese Sauce, Jalapeno",
-                  "offers": {
-                    "@type": "Offer",
-                    "price": "12.00",
-                    "priceCurrency": "EUR"
-                  },
-                  "suitableForDiet": "https://schema.org/HalalDiet"
-                }
-              ]
+              "name": "Pizza",
+              "description": "Small, medium, large and family pizzas with multiple topping options.",
+              "hasMenuItem": []
             },
             {
               "@type": "MenuSection",
-              "name": "Chicken Burgers",
-              "description": "Knusprige Chicken Strips, 100% Halal",
-              "hasMenuItem": [
-                {
-                  "@type": "MenuItem",
-                  "name": "Crunchy Chicken",
-                  "description": "Brioche Bun, Chicken Strips, Käse, Burger Sauce, Salat",
-                  "offers": {
-                    "@type": "Offer",
-                    "price": "8.50",
-                    "priceCurrency": "EUR"
-                  },
-                  "suitableForDiet": "https://schema.org/HalalDiet"
-                }
-              ]
+              "name": "Rice",
+              "description": "Jollof, Fried Rice, Assorted Rice and specials.",
+              "hasMenuItem": []
             },
             {
               "@type": "MenuSection",
-              "name": "Fried Chicken",
-              "description": "Knuspriges Fried Chicken - Wings & Strips",
-              "hasMenuItem": [
-                {
-                  "@type": "MenuItem",
-                  "name": "Chicken Wings",
-                  "description": "Knusprige Chicken Wings - 6, 10 oder 20 Stück",
-                  "offers": {
-                    "@type": "Offer",
-                    "price": "7.50",
-                    "priceCurrency": "EUR"
-                  },
-                  "suitableForDiet": "https://schema.org/HalalDiet"
-                }
-              ]
+              "name": "Banku, Ampesi and Shawarma",
+              "description": "Traditional Ghanaian meals and shawarma options.",
+              "hasMenuItem": []
             }
           ]
         }
