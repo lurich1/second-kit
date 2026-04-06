@@ -2,17 +2,17 @@
 
 import { useState } from "react"
 import { MenuCategory } from "./menu-category"
-import { PizzaSlice, RiceBowl, Leaf, Sandwich, AppleHalf, ChickenLeg, Fish, Pot, CoffeeCup } from "iconoir-react"
+import { PizzaSlice, Leaf, CoffeeCup, FireFlame } from "iconoir-react"
 
 const categories = [
   { id: "pizza", label: "Pizza", icon: PizzaSlice },
-  { id: "rice", label: "Rice", icon: RiceBowl },
-  { id: "fries", label: "Fries", icon: ChickenLeg },
-  { id: "banku", label: "Banku", icon: Fish },
-  { id: "ampesi", label: "Ampesi", icon: Pot },
-  { id: "shawarma", label: "Shawarma", icon: Sandwich },
+  { id: "rice", label: "Rice", icon: CoffeeCup },
+  { id: "fries", label: "Fries", icon: FireFlame },
+  { id: "banku", label: "Banku", icon: CoffeeCup },
+  { id: "ampesi", label: "Ampesi", icon: Leaf },
+  { id: "shawarma", label: "Shawarma", icon: FireFlame },
   { id: "salad", label: "Salad", icon: Leaf },
-  { id: "sandwich", label: "Sandwich", icon: AppleHalf },
+  { id: "sandwich", label: "Sandwich", icon: CoffeeCup },
   { id: "spaghetti", label: "Spaghetti", icon: CoffeeCup },
 ]
 
