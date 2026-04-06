@@ -14,15 +14,19 @@ interface MenuCategoryProps {
 }
 
 export function MenuCategory({ items }: MenuCategoryProps) {
+  const kitchenPhone = "+233536991464"
+
   return (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
-      {items.map((item) => (
-        <div
-          key={item.name}
-          className="group relative cursor-pointer"
-        >
+      {items.map((item) => {
+        const hasCustomImage = Boolean(item.image)
+        const imageSrc = item.image ?? "/placeholder.svg"
+        const smsBody = encodeURIComponent(`Hello 3 Seconds Kitchen, I want to order: ${item.name} (${item.price}).`)
+        const smsHref = `sms:${kitchenPhone}?body=${smsBody}`
+
+        return (
+          <div key={item.name} className="group relative cursor-pointer">
           {/* Floating Burger Image - NO BOX */}
-          {item.image && (
             <div className="relative w-full aspect-square mb-6">
               {/* Price Badge - Floating on Image */}
               <div className="absolute -top-4 -right-4 z-20 bg-primary text-primary-foreground px-6 py-3 rounded-full shadow-2xl group-hover:scale-110 transition-transform duration-300">
@@ -30,21 +34,23 @@ export function MenuCategory({ items }: MenuCategoryProps) {
               </div>
 
               {/* Halal Badge - Bottom Left Corner */}
-              <div className="absolute bottom-2 left-2 z-20 group-hover:scale-110 transition-transform duration-300">
-                <Image
-                  src="/graphics/halal logo.svg"
-                  alt="100% Halal"
-                  width={64}
-                  height={64}
-                  loading="lazy"
-                  className="h-12 w-12 md:h-16 md:w-16 drop-shadow-lg"
-                />
-              </div>
+              {hasCustomImage && (
+                <div className="absolute bottom-2 left-2 z-20 group-hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src="/graphics/halal logo.svg"
+                    alt="100% Halal"
+                    width={64}
+                    height={64}
+                    loading="lazy"
+                    className="h-12 w-12 md:h-16 md:w-16 drop-shadow-lg"
+                  />
+                </div>
+              )}
 
               {/* Burger Image - Transparent Background, Floating Effect */}
               <div className="relative w-full h-full group-hover:-translate-y-2 transition-transform duration-500">
                 <Image
-                  src={item.image}
+                  src={imageSrc}
                   alt={item.name}
                   fill
                   loading="lazy"
@@ -54,7 +60,6 @@ export function MenuCategory({ items }: MenuCategoryProps) {
                 />
               </div>
             </div>
-          )}
 
           {/* Product Info - Below Floating Image */}
           <div className="text-center px-2">
@@ -77,9 +82,18 @@ export function MenuCategory({ items }: MenuCategoryProps) {
                 ))}
               </div>
             )}
+
+            <div className="mt-5">
+              <a
+                href={smsHref}
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground font-black tracking-tight hover:opacity-90 transition-opacity"
+              >
+                Order via SMS
+              </a>
+            </div>
           </div>
         </div>
-      ))}
+      )})}
     </div>
   )
 }
