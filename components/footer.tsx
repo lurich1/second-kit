@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Instagram, Phone, Mail, MapPin } from "iconoir-react"
+import { BUSINESS_LOCATION } from "@/lib/business-location"
 
 export function Footer() {
   return (
@@ -73,9 +74,11 @@ export function Footer() {
               </a>
               <p className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
-                Baakoniaba - Sunyani, Main Street<br />
-                Hse no. 125/F North Ridge<br />
-                850064-8204
+                {BUSINESS_LOCATION.line1}
+                <br />
+                {BUSINESS_LOCATION.line2}
+                <br />
+                {BUSINESS_LOCATION.line3}
               </p>
             </div>
           </div>

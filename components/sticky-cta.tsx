@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Phone, MapPin } from "iconoir-react"
+import { BUSINESS_LOCATION } from "@/lib/business-location"
 
 export function StickyCTA() {
   const [isVisible, setIsVisible] = useState(false)
@@ -34,8 +35,8 @@ export function StickyCTA() {
             />
             <div className="flex items-center gap-2 text-sm">
               <MapPin className="w-4 h-4" />
-              <span className="font-bold">Baakoniaba - Sunyani</span>
-              <span className="hidden sm:inline">• Main Street</span>
+              <span className="font-bold">{BUSINESS_LOCATION.shortLabel}</span>
+              <span className="hidden sm:inline">• {BUSINESS_LOCATION.line2}</span>
             </div>
           </div>
 

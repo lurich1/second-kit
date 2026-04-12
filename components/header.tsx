@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { BUSINESS_LOCATION } from "@/lib/business-location"
 import Image from "next/image"
 import { Menu, Xmark, MapPin } from "iconoir-react"
 
@@ -50,7 +51,7 @@ export function Header() {
             </Link>
             <div className="flex items-center gap-2 text-accent">
               <MapPin className="w-5 h-5" />
-              <span className="text-sm font-medium">Sunyani</span>
+              <span className="text-sm font-medium">{BUSINESS_LOCATION.shortLabel}</span>
             </div>
           </nav>
 
@@ -92,7 +93,7 @@ export function Header() {
               <div className="flex items-center justify-between pt-4 border-t border-border">
                 <div className="flex items-center gap-2 text-accent">
                   <MapPin className="w-5 h-5" />
-                  <span className="text-sm font-medium">Sunyani</span>
+                  <span className="text-sm font-medium">{BUSINESS_LOCATION.shortLabel}</span>
                 </div>
               </div>
             </div>

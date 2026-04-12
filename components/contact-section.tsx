@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Instagram } from "iconoir-react"
+import { BUSINESS_LOCATION } from "@/lib/business-location"
 
 export function ContactSection() {
   return (
@@ -44,10 +45,10 @@ export function ContactSection() {
             </div>
             <div>
               <p className="text-muted-foreground text-sm mb-2">Location</p>
-              <p className="text-lg md:text-xl font-bold text-primary">
-                Baakoniaba - Sunyani
+              <p className="text-lg md:text-xl font-bold text-primary">{BUSINESS_LOCATION.shortLabel}</p>
+              <p className="text-sm text-primary mt-1">
+                {BUSINESS_LOCATION.line1}, {BUSINESS_LOCATION.line2}
               </p>
-              <p className="text-sm text-primary mt-1">Main Street</p>
             </div>
             <p className="text-sm text-muted-foreground">Visit us</p>
           </div>
@@ -74,10 +75,11 @@ export function ContactSection() {
             <h3 className="text-2xl font-bold text-foreground">Besuchen Sie uns</h3>
           </div>
           <p className="text-lg text-foreground mb-2">
-            <strong className="text-primary">Baakoniaba - Sunyani</strong>
+            <strong className="text-primary">{BUSINESS_LOCATION.shortLabel}</strong>
           </p>
-          <p className="text-muted-foreground">Main Street, Hse no. 125/F North Ridge</p>
-          <p className="text-muted-foreground">850064-8204</p>
+          <p className="text-muted-foreground">{BUSINESS_LOCATION.line1}</p>
+          <p className="text-muted-foreground">{BUSINESS_LOCATION.line2}</p>
+          <p className="text-muted-foreground">{BUSINESS_LOCATION.line3}</p>
           <p className="text-sm text-muted-foreground mt-4">
             <strong className="text-foreground">Delivery Service Available</strong>
           </p>

@@ -3,6 +3,7 @@
 import { ArrowDown, FastArrowRight, Phone } from "iconoir-react"
 import Link from "next/link"
 import Image from "next/image"
+import { BUSINESS_LOCATION } from "@/lib/business-location"
 
 export function Hero() {
   return (
@@ -70,9 +71,9 @@ export function Hero() {
             />
             <div className="text-left">
               <p className="text-primary font-black text-2xl md:text-3xl lg:text-4xl mb-1">Visit Us</p>
-              <p className="text-foreground font-bold text-base md:text-lg lg:text-xl">Baakoniaba - Sunyani</p>
-              <p className="text-muted-foreground text-sm md:text-base mt-1">Main Street, Hse no. 125/F North Ridge</p>
-              <p className="text-muted-foreground text-sm md:text-base mt-1">850064-8204</p>
+              <p className="text-foreground font-bold text-base md:text-lg lg:text-xl">{BUSINESS_LOCATION.line1}</p>
+              <p className="text-muted-foreground text-sm md:text-base mt-1">{BUSINESS_LOCATION.line2}</p>
+              <p className="text-muted-foreground text-sm md:text-base mt-1">{BUSINESS_LOCATION.line3}</p>
             </div>
           </div>
         </div>

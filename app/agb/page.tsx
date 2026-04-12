@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { ArrowLeft } from "iconoir-react"
+import { BUSINESS_LOCATION } from "@/lib/business-location"
 
 export const metadata = {
   title: "Terms & Conditions | 3 Seconds Kitchen",
@@ -47,9 +48,11 @@ export default function AGBPage() {
             <section className="bg-card p-6 rounded-lg border border-border">
               <h2 className="text-2xl font-bold text-foreground mb-4">3. Delivery & Pickup</h2>
               <ul className="text-sm text-muted-foreground space-y-2 list-disc list-inside">
-                <li>Delivery is available in Sunyani (Baakoniaba and nearby areas). Fees may apply.</li>
+                <li>Delivery is available in Sunyani, Fiapre, and nearby areas. Fees may apply.</li>
                 <li>Delivery times are estimates; we will notify you if delays occur.</li>
-                <li>Pickup location: Baakoniaba - Sunyani, Main Street, Hse no. 125/F North Ridge, 850064-8204.</li>
+                <li>
+                  Pickup location: {BUSINESS_LOCATION.line1}, {BUSINESS_LOCATION.line2}, {BUSINESS_LOCATION.line3}.
+                </li>
               </ul>
             </section>
 
@@ -80,7 +83,9 @@ export default function AGBPage() {
               <h2 className="text-2xl font-bold text-foreground mb-4">7. Contact</h2>
               <div className="text-sm text-muted-foreground space-y-2">
                 <p>Phone: <a href="tel:+233536991464" className="text-primary hover:underline">0536 991464</a> / <a href="tel:+233246495029" className="text-primary hover:underline">0246 495029</a></p>
-                <p>Location: Baakoniaba - Sunyani, Main Street, Hse no. 125/F North Ridge, 850064-8204</p>
+                <p>
+                  Location: {BUSINESS_LOCATION.line1}, {BUSINESS_LOCATION.line2}, {BUSINESS_LOCATION.line3}
+                </p>
               </div>
             </section>
 

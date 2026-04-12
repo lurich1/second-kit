@@ -5,6 +5,7 @@ import { LocationSection } from "@/components/location-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { StickyCTA } from "@/components/sticky-cta"
+import { BUSINESS_LOCATION } from "@/lib/business-location"
 
 export default function Home() {
   // Structured Data for SEO (JSON-LD)
@@ -23,11 +24,10 @@ export default function Home() {
         "logo": "https://foodiewagon.de/images-removebg-preview.png",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Main Street, Hse no. 125/F North Ridge",
-          "addressLocality": "Sunyani",
-          "addressRegion": "Brong-Ahafo",
-          "postalCode": "850064-8204",
-          "addressCountry": "GH"
+          "streetAddress": BUSINESS_LOCATION.streetAddress,
+          "addressLocality": BUSINESS_LOCATION.addressLocality,
+          "addressRegion": BUSINESS_LOCATION.addressRegion,
+          "addressCountry": BUSINESS_LOCATION.addressCountry
         },
         "telephone": "+233536991464",
         "openingHoursSpecification": [

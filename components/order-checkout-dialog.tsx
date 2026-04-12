@@ -11,11 +11,11 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-
-const KITCHEN_SMS = process.env.NEXT_PUBLIC_KITCHEN_SMS_NUMBER ?? "+233536991464"
-const PAYMENT_PHONE_DISPLAY =
-  process.env.NEXT_PUBLIC_PAYMENT_PHONE_DISPLAY ?? "0536 991 464"
-const PAYSTACK_PUBLIC_KEY = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY ?? ""
+import {
+  KITCHEN_SMS,
+  PAYMENT_PHONE_DISPLAY,
+  PAYSTACK_PUBLIC_KEY_BUILD,
+} from "@/lib/checkout-public-env"
 
 export interface CheckoutItem {
   name: string
@@ -74,6 +74,12 @@ export function OrderCheckoutDialog({ item, open, onOpenChange }: OrderCheckoutD
     amountGhs: string
   } | null>(null)
 
+  /** null = not loaded yet; string (maybe "") = from server at runtime */
+  const [fetchedPaystackPublicKey, setFetchedPaystackPublicKey] = useState<string | null>(null)
+
+  const paystackPublicKey =
+    fetchedPaystackPublicKey !== null ? fetchedPaystackPublicKey : PAYSTACK_PUBLIC_KEY_BUILD
+
   useEffect(() => {
     if (!open) {
       setAmountPaid("")
@@ -84,6 +90,23 @@ export function OrderCheckoutDialog({ item, open, onOpenChange }: OrderCheckoutD
       setPaystackBusy(false)
       setPaystackError(null)
       setVerifiedPaystack(null)
+      setFetchedPaystackPublicKey(null)
+    }
+  }, [open])
+
+  useEffect(() => {
+    if (!open) return
+    let cancelled = false
+    fetch("/api/paystack/public-config")
+      .then((r) => r.json())
+      .then((d: { publicKey?: string }) => {
+        if (!cancelled) setFetchedPaystackPublicKey((d.publicKey ?? "").trim())
+      })
+      .catch(() => {
+        if (!cancelled) setFetchedPaystackPublicKey("")
+      })
+    return () => {
+      cancelled = true
     }
   }, [open])
 
@@ -131,8 +154,10 @@ export function OrderCheckoutDialog({ item, open, onOpenChange }: OrderCheckoutD
       return
     }
 
-    if (!PAYSTACK_PUBLIC_KEY) {
-      setPaystackError("Paystack is not configured (missing NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY).")
+    if (!paystackPublicKey) {
+      setPaystackError(
+        "Paystack public key is missing. In Vercel add NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY or PAYSTACK_PUBLIC_KEY, then redeploy (or open this dialog again after saving).",
+      )
       return
     }
 
@@ -175,7 +200,7 @@ export function OrderCheckoutDialog({ item, open, onOpenChange }: OrderCheckoutD
       }
 
       const handler = PaystackPop.setup({
-        key: PAYSTACK_PUBLIC_KEY,
+        key: paystackPublicKey,
         email,
         amount: amountPesewas,
         currency: "GHS",
@@ -199,7 +224,7 @@ export function OrderCheckoutDialog({ item, open, onOpenChange }: OrderCheckoutD
     } finally {
       setPaystackBusy(false)
     }
-  }, [item, payEmail, payAmountGhs, verifyReference, onOpenChange])
+  }, [item, payEmail, payAmountGhs, verifyReference, onOpenChange, paystackPublicKey])
 
   if (!item) return null
 
@@ -237,7 +262,11 @@ Please confirm and prepare my order. Thank you.`
             <p className="text-primary font-black">{item.price}</p>
           </div>
 
-          {PAYSTACK_PUBLIC_KEY ? (
+          {fetchedPaystackPublicKey === null && !PAYSTACK_PUBLIC_KEY_BUILD ? (
+            <p className="text-xs text-muted-foreground rounded-md border border-dashed p-2">
+              Loading Paystack…
+            </p>
+          ) : paystackPublicKey ? (
             <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 space-y-3 text-sm">
               <p className="font-bold text-foreground">Pay with Paystack</p>
               <div className="space-y-2">
@@ -283,7 +312,12 @@ Please confirm and prepare my order. Thank you.`
             </div>
           ) : (
             <p className="text-xs text-muted-foreground rounded-md border border-dashed p-2">
-              Add <span className="font-mono">NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY</span> to enable Paystack checkout.
+              Add <span className="font-mono">NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY</span> or{" "}
+              <span className="font-mono">PAYSTACK_PUBLIC_KEY</span> (same <span className="font-mono">pk_test_…</span>{" "}
+              value) in Vercel → Environment Variables, then{" "}
+              <strong className="text-foreground">Redeploy</strong>. Public keys set only after deploy need a new build
+              unless you use <span className="font-mono">PAYSTACK_PUBLIC_KEY</span>, which this site reads live from the
+              server.
             </p>
           )}
 
