@@ -105,7 +105,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="canonical" href="https://foodiewagon.de" />
-        <link rel="preload" href="/images-removebg-preview.png" as="image" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
       </head>

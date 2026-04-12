@@ -133,6 +133,28 @@ export function OrderCheckoutDialog({ item, open, onOpenChange }: OrderCheckoutD
 
       const ref = `3sec_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`
 
+      // Paystack inline.js expects plain functions (not async); async callbacks can throw "callback must be a valid function".
+      function onPaystackSuccess(response: { reference: string }) {
+        setPaystackBusy(true)
+        setPaystackError(null)
+        verifyReference(response.reference)
+          .then((verified) => {
+            setVerifiedPaystack(verified)
+            setAmountPaid(verified.amountGhs)
+            setTransactionRef(verified.reference)
+          })
+          .catch((e) => {
+            setPaystackError(e instanceof Error ? e.message : "Verification failed")
+          })
+          .finally(() => {
+            setPaystackBusy(false)
+          })
+      }
+
+      function onPaystackClose() {
+        setPaystackBusy(false)
+      }
+
       const handler = PaystackPop.setup({
         key: PAYSTACK_PUBLIC_KEY,
         email,
@@ -148,23 +170,8 @@ export function OrderCheckoutDialog({ item, open, onOpenChange }: OrderCheckoutD
             },
           ],
         },
-        callback: async (response) => {
-          setPaystackBusy(true)
-          setPaystackError(null)
-          try {
-            const verified = await verifyReference(response.reference)
-            setVerifiedPaystack(verified)
-            setAmountPaid(verified.amountGhs)
-            setTransactionRef(verified.reference)
-          } catch (e) {
-            setPaystackError(e instanceof Error ? e.message : "Verification failed")
-          } finally {
-            setPaystackBusy(false)
-          }
-        },
-        onClose: () => {
-          setPaystackBusy(false)
-        },
+        callback: onPaystackSuccess,
+        onClose: onPaystackClose,
       })
 
       handler.openIframe()
