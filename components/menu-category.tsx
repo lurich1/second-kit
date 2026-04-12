@@ -37,12 +37,12 @@ export function MenuCategory({ items }: MenuCategoryProps) {
                 {hasCustomImage && (
                   <div className="absolute bottom-2 left-2 z-20 group-hover:scale-110 transition-transform duration-300">
                     <Image
-                      src="/graphics/halal logo.svg"
-                      alt="100% Halal"
+                      src="/graphics/3secslogo.png"
+                      alt="3 Seconds Kitchen"
                       width={64}
                       height={64}
                       loading="lazy"
-                      className="h-12 w-12 md:h-16 md:w-16 drop-shadow-lg"
+                      className="h-12 w-12 md:h-16 md:w-16 object-contain drop-shadow-lg"
                     />
                   </div>
                 )}
