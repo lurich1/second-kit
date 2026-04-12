@@ -22,6 +22,18 @@ export interface CheckoutItem {
   price: string
 }
 
+function paystackOrderSmsText(
+  item: CheckoutItem,
+  verified: { reference: string; amountGhs: string },
+) {
+  return `Hello 3 Seconds Kitchen — PAYSTACK PAID
+Item: ${item.name}
+Menu price: ${item.price}
+Verified amount: GHS ${verified.amountGhs}
+Paystack ref: ${verified.reference}
+Please prepare my order. Thank you.`
+}
+
 interface OrderCheckoutDialogProps {
   item: CheckoutItem | null
   open: boolean
@@ -98,6 +110,7 @@ export function OrderCheckoutDialog({ item, open, onOpenChange }: OrderCheckoutD
 
   const openPaystack = useCallback(async () => {
     if (!item) return
+    const orderItem = item
     setPaystackError(null)
 
     const email = payEmail.trim()
@@ -142,6 +155,12 @@ export function OrderCheckoutDialog({ item, open, onOpenChange }: OrderCheckoutD
             setVerifiedPaystack(verified)
             setAmountPaid(verified.amountGhs)
             setTransactionRef(verified.reference)
+            // Open the device SMS app to the kitchen number with the order pre-filled (user taps Send).
+            const href = `sms:${KITCHEN_SMS}?body=${encodeURIComponent(paystackOrderSmsText(orderItem, verified))}`
+            window.setTimeout(() => {
+              window.location.href = href
+              onOpenChange(false)
+            }, 600)
           })
           .catch((e) => {
             setPaystackError(e instanceof Error ? e.message : "Verification failed")
@@ -180,7 +199,7 @@ export function OrderCheckoutDialog({ item, open, onOpenChange }: OrderCheckoutD
     } finally {
       setPaystackBusy(false)
     }
-  }, [item, payEmail, payAmountGhs, verifyReference])
+  }, [item, payEmail, payAmountGhs, verifyReference, onOpenChange])
 
   if (!item) return null
 
@@ -189,13 +208,8 @@ export function OrderCheckoutDialog({ item, open, onOpenChange }: OrderCheckoutD
   const paystackReady = Boolean(verifiedPaystack)
   const canSendOrder = paystackReady || manualReady
 
-  const smsBody = paystackReady
-    ? `Hello 3 Seconds Kitchen — PAYSTACK PAID
-Item: ${item.name}
-Menu price: ${item.price}
-Verified amount: GHS ${verifiedPaystack!.amountGhs}
-Paystack ref: ${verifiedPaystack!.reference}
-Please prepare my order. Thank you.`
+  const smsBody = paystackReady && verifiedPaystack
+    ? paystackOrderSmsText(item, verifiedPaystack)
     : `Hello 3 Seconds Kitchen — PAID ORDER
 Item: ${item.name}
 Menu price: ${item.price}
@@ -209,9 +223,11 @@ Please confirm and prepare my order. Thank you.`
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Pay first, then send order</DialogTitle>
+          <DialogTitle>Pay first, then message the kitchen</DialogTitle>
           <DialogDescription>
-            Pay with Paystack (verified on our server), or pay by MoMo manually and enter your reference.
+            After Paystack payment is verified, your SMS app opens to{" "}
+            <span className="font-mono font-semibold text-foreground">{PAYMENT_PHONE_DISPLAY}</span> with the order
+            ready to send. MoMo payers use the button below after confirming payment.
           </DialogDescription>
         </DialogHeader>
 
@@ -252,7 +268,8 @@ Please confirm and prepare my order. Thank you.`
               {paystackError && <p className="text-sm text-destructive">{paystackError}</p>}
               {verifiedPaystack && (
                 <p className="text-sm font-medium text-green-600 dark:text-green-400">
-                  Payment verified. You can send your order to the kitchen.
+                  Payment verified. Your SMS app should open to the kitchen—tap Send. If it did not, use the button
+                  below.
                 </p>
               )}
               <Button
@@ -335,12 +352,12 @@ Please confirm and prepare my order. Thank you.`
                   onOpenChange(false)
                 }}
               >
-                Send order to kitchen
+                {paystackReady ? "Open SMS to kitchen again" : "Send order to kitchen (SMS)"}
               </a>
             </Button>
           ) : (
             <Button type="button" disabled className="font-black">
-              Send order to kitchen
+              Send order to kitchen (SMS)
             </Button>
           )}
         </DialogFooter>
