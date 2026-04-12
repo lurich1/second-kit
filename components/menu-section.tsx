@@ -18,36 +18,112 @@ const categories = [
 
 const menuItems = {
   pizza: [
-    { name: "Small Pizza", price: "GHS 80 - 140", description: "Chicken 80, Beef 90, Tuna 100, Mushroom 100, All Seasoning 100, 3 Seconds Special 120, Goat 130, Fully Loaded Special 140." },
-    { name: "Medium Pizza", price: "GHS 90 - 170", description: "Margarita 90, Chicken 100, Beef 110, Tuna 120, Mushroom 120, All Seasoning 120, 3 Seconds Special 140, Goat 170, Fully Loaded Special 170." },
-    { name: "Large Pizza", price: "GHS 130 - 220", description: "Margarita 130, Chicken 150, Beef 160, Tuna 170, Mushroom 170, All Seasoning 170, 3 Seconds Special 190, Goat 220, Fully Loaded Special 220." },
-    { name: "Family Pizza", price: "GHS 180 - 300", description: "Margarita 180, Chicken 200, Beef 220, Tuna 240, Mushroom 240, All Seasoning 260, 3 Seconds Special 280, Goat 300, Fully Loaded Special 300." },
-    { name: "Extra Cheese", price: "GHS 30", description: "Add-on option." },
+    {
+      name: "Small Pizza",
+      price: "GHS 80 - 140",
+      description: "Chicken 80, Beef 90, Tuna 100, Mushroom 100, All Seasoning 100, 3 Seconds Special 120, Goat 130, Fully Loaded Special 140.",
+      image: "/Pizza/pizza.png",
+    },
+    {
+      name: "Medium Pizza",
+      price: "GHS 90 - 170",
+      description: "Margarita 90, Chicken 100, Beef 110, Tuna 120, Mushroom 120, All Seasoning 120, 3 Seconds Special 140, Goat 170, Fully Loaded Special 170.",
+      image: "/Pizza/pizza2.png",
+    },
+    {
+      name: "Large Pizza",
+      price: "GHS 130 - 220",
+      description: "Margarita 130, Chicken 150, Beef 160, Tuna 170, Mushroom 170, All Seasoning 170, 3 Seconds Special 190, Goat 220, Fully Loaded Special 220.",
+      image: "/Pizza/pizza.png",
+    },
+    {
+      name: "Family Pizza",
+      price: "GHS 180 - 300",
+      description: "Margarita 180, Chicken 200, Beef 220, Tuna 240, Mushroom 240, All Seasoning 260, 3 Seconds Special 280, Goat 300, Fully Loaded Special 300.",
+      image: "/Pizza/pizza2.png",
+    },
+    {
+      name: "Extra Cheese",
+      price: "GHS 30",
+      description: "Add-on option.",
+      image: "/Pizza/pizza.png",
+    },
   ],
   rice: [
-    { name: "Rice Dishes", price: "GHS 30 - 150", description: "Jollof/Fried Rice with charcoal chicken 30-70, Goat 80-90/80-100, Red Fish 50-70, Assorted 80-150, Egg & Sausage 50-60, Turkey 70-80, Beef/Chicken sauce 80-100." },
-    { name: "Special Rice Dishes", price: "GHS 50 - 100", description: "Egg Fried Rice + Grilled Chicken 60-70, Vegetable Rice + Grilled Chicken 60-70, Aroni + Grilled Chicken 60-80, Aroni + Goat 80-100, Aroni Red Fish 70-100, Plain Rice + Gravy 50-60, Plain Rice + Moyo 60-80." },
+    {
+      name: "Rice Dishes",
+      price: "GHS 30 - 150",
+      description: "Jollof/Fried Rice with charcoal chicken 30-70, Goat 80-90/80-100, Red Fish 50-70, Assorted 80-150, Egg & Sausage 50-60, Turkey 70-80, Beef/Chicken sauce 80-100.",
+      image: "/Fried-Chicken/fried.png",
+    },
+    {
+      name: "Special Rice Dishes",
+      price: "GHS 50 - 100",
+      description: "Egg Fried Rice + Grilled Chicken 60-70, Vegetable Rice + Grilled Chicken 60-70, Aroni + Grilled Chicken 60-80, Aroni + Goat 80-100, Aroni Red Fish 70-100, Plain Rice + Gravy 50-60, Plain Rice + Moyo 60-80.",
+      image: "/Fried-Chicken/fired.png",
+    },
   ],
   fries: [
-    { name: "Fries Dishes", price: "GHS 50 - 120", description: "French Fries/Yam Chips + Chicken 50-60, + Gizzard 50-60, + Sausage 50-60, + Tilapia 70-100, Loaded Fries 70-120." },
+    {
+      name: "Fries Dishes",
+      price: "GHS 50 - 120",
+      description: "French Fries/Yam Chips + Chicken 50-60, + Gizzard 50-60, + Sausage 50-60, + Tilapia 70-100, Loaded Fries 70-120.",
+      image: "/Fried-Chicken/fried.png",
+    },
   ],
   banku: [
-    { name: "Banku Dishes", price: "GHS 60 - 150", description: "Banku with Tilapia 60/70/80, with Green + Tilapia 60/70/80, with Moyo + Tilapia 60/70/80, with Tilapia Light Soup 60/70, Catfish 100/120/150." },
+    {
+      name: "Banku with Tilapia",
+      price: "GHS 60 - 80",
+      description: "Banku with Tilapia 60/70/80, with Green + Tilapia 60/70/80, with Moyo + Tilapia 60/70/80.",
+      image: "/banku/banku%201.png",
+    },
+    {
+      name: "Banku with Soup & Catfish",
+      price: "GHS 60 - 150",
+      description: "Banku with Tilapia Light Soup 60/70, Catfish 100/120/150.",
+      image: "/banku/banku%202.png",
+    },
   ],
   ampesi: [
-    { name: "Ampesi Dishes", price: "GHS 50 - 70", description: "Yam Chips + Chicken, Boiled Yam + Egg Stew, Boiled Yam + Palava Sauce, Boiled Yam + Garden Egg Stew, Plantain + Egg Stew, Plantain + Palava Sauce, Plantain + Garden Egg Stew, Plantain + Kontomire Stew." },
+    {
+      name: "Ampesi Dishes",
+      price: "GHS 50 - 70",
+      description: "Yam Chips + Chicken, Boiled Yam + Egg Stew, Boiled Yam + Palava Sauce, Boiled Yam + Garden Egg Stew, Plantain + Egg Stew, Plantain + Palava Sauce, Plantain + Garden Egg Stew, Plantain + Kontomire Stew.",
+      image: "/ampesi/ampesi.png",
+    },
   ],
   shawarma: [
-    { name: "Shawarma Types", price: "GHS 50 - 80", description: "Beef 55, Chicken 50, Mixed 60, Beef + Fries 75, Chicken + Fries 70, Mixed + Fries 80." },
+    {
+      name: "Shawarma Types",
+      price: "GHS 50 - 80",
+      description: "Beef 55, Chicken 50, Mixed 60, Beef + Fries 75, Chicken + Fries 70, Mixed + Fries 80.",
+      image: "/shawama/shawama.png",
+    },
   ],
   salad: [
-    { name: "Salad Dishes", price: "GHS 30 - 60", description: "Potato 40/50, Beetroot 30/40, Chicken 30/40/50, Tuna 30/40/50, Avocado 40/50, Beef 40/50/60, 3 Seconds Special 50/60, Pasta 30/40/50, Vegetable/Mixed 30/40/50." },
+    {
+      name: "Salad Dishes",
+      price: "GHS 30 - 60",
+      description: "Potato 40/50, Beetroot 30/40, Chicken 30/40/50, Tuna 30/40/50, Avocado 40/50, Beef 40/50/60, 3 Seconds Special 50/60, Pasta 30/40/50, Vegetable/Mixed 30/40/50.",
+      image: "/salad/salad.png",
+    },
   ],
   sandwich: [
-    { name: "Sandwich Types", price: "GHS 40 - 50", description: "Egg Sandwich 40, Protein/Vegetable/Club/Tuna Club 40/50, Chicken Burger 40, Beef Burger 40, Cheese Burger 40, Hot Dog 40." },
+    {
+      name: "Sandwich Types",
+      price: "GHS 40 - 50",
+      description: "Egg Sandwich 40, Protein/Vegetable/Club/Tuna Club 40/50, Chicken Burger 40, Beef Burger 40, Cheese Burger 40, Hot Dog 40.",
+      image: "/sandwitch/sandwitch.png",
+    },
   ],
   spaghetti: [
-    { name: "Spaghetti Dishes", price: "GHS 50 - 100", description: "Spaghetti Bolognese 50/60, Assorted Pasta 80/100, Assorted Indomie 50/70/80/100." },
+    {
+      name: "Spaghetti Dishes",
+      price: "GHS 50 - 100",
+      description: "Spaghetti Bolognese 50/60, Assorted Pasta 80/100, Assorted Indomie 50/70/80/100.",
+      image: "/spag/sapg.png",
+    },
   ],
 }
 
