@@ -317,7 +317,10 @@ Please confirm and prepare my order. Thank you.`
               value) in Vercel → Environment Variables, then{" "}
               <strong className="text-foreground">Redeploy</strong>. Public keys set only after deploy need a new build
               unless you use <span className="font-mono">PAYSTACK_PUBLIC_KEY</span>, which this site reads live from the
-              server.
+              server. If one <span className="font-mono">*.vercel.app</span> link works and another does not, check env
+              scope: keys set for <strong className="text-foreground">Production</strong> only are not available on{" "}
+              <strong className="text-foreground">Preview</strong> deployments—use{" "}
+              <strong className="text-foreground">All Environments</strong> or share your production URL.
             </p>
           )}
 
